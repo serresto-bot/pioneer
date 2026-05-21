@@ -113,6 +113,8 @@
             position: absolute;
             inset: 0;
             z-index: 1;
+            background-size: cover;
+            background-position: center;
         }
         .hero-content {
             position: relative;
@@ -1088,14 +1090,9 @@
      ============================ -->
 <section id="hero">
 
-    <!-- ▼ 이미지 또는 영상으로 교체 -->
-    <div class="hero-bg ph ph-dark" style="border:none;">
-        <span class="ph-icon">▶</span>
-        <span>Hero — 브랜드 필름 또는 키 비주얼 전면 이미지</span>
-        <span class="ph-sub">권장: 브랜드 필름 영상(mp4) 또는 우주인 콜라주 전면 이미지</span>
-        <span class="ph-sub">비율: 전체화면 / 영상은 autoplay muted loop 설정</span>
+    <div class="hero-bg" style="background-image:url('hero-bg.jpg'); background-size:cover; background-position:center;">
+        <div style="position:absolute; inset:0; background:linear-gradient(to bottom, rgba(2,6,15,0.55) 0%, rgba(2,6,15,0.3) 50%, rgba(2,6,15,0.75) 100%);"></div>
     </div>
-    <!-- ▲ 이미지 또는 영상으로 교체 -->
 
     <div class="hero-content">
         <div class="hero-logo-text">PIONEER</div>
