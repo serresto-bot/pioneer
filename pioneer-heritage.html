@@ -1,0 +1,491 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Heritage — PIONEER</title>
+    <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&family=Space+Mono:wght@400;700&family=Noto+Sans+KR:wght@300;400;500;700&display=swap" rel="stylesheet">
+    <style>
+        *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+
+        :root {
+            --navy:  #02060F;
+            --green: #B4FF00;
+            --pink:  #FF2D78;
+            --gray:  #8888A0;
+            --white: #FFFFFF;
+            --mono:  'Space Mono', monospace;
+        }
+
+        html { scroll-behavior: smooth; }
+
+        body {
+            font-family: 'Noto Sans KR', 'Space Grotesk', sans-serif;
+            background: var(--navy);
+            color: var(--white);
+            overflow-x: hidden;
+        }
+
+        /* HEADER */
+        header {
+            position: fixed;
+            top: 0; left: 0; right: 0;
+            z-index: 100;
+            padding: 22px 48px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            background: rgba(2,6,15,0.92);
+            backdrop-filter: blur(16px);
+        }
+        .header-logo {
+            font-family: 'Space Grotesk', sans-serif;
+            font-size: 17px;
+            font-weight: 700;
+            color: var(--white);
+            text-decoration: none;
+            letter-spacing: -0.01em;
+        }
+        .header-back {
+            font-family: var(--mono);
+            font-size: 9px;
+            letter-spacing: 0.22em;
+            text-transform: uppercase;
+            color: rgba(255,255,255,0.4);
+            text-decoration: none;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            transition: color 0.2s;
+        }
+        .header-back:hover { color: var(--white); }
+        .header-back::before { content: '←'; }
+
+        /* HERO */
+        #hero {
+            min-height: 80vh;
+            display: flex;
+            align-items: flex-end;
+            padding: 0 48px 80px;
+            position: relative;
+            border-bottom: 1px solid rgba(255,255,255,0.06);
+        }
+        .hero-eyebrow {
+            font-family: var(--mono);
+            font-size: 9px;
+            letter-spacing: 0.28em;
+            text-transform: uppercase;
+            color: var(--green);
+            display: block;
+            margin-bottom: 24px;
+        }
+        .hero-title {
+            font-family: 'Space Grotesk', sans-serif;
+            font-size: clamp(48px, 8vw, 120px);
+            font-weight: 700;
+            letter-spacing: -0.03em;
+            line-height: 0.95;
+            color: var(--white);
+            margin-bottom: 32px;
+        }
+        .hero-sub {
+            font-size: clamp(15px, 1.8vw, 20px);
+            color: rgba(255,255,255,0.35);
+            line-height: 1.8;
+            max-width: 560px;
+            font-weight: 300;
+        }
+        .hero-coord {
+            position: absolute;
+            top: 50%;
+            right: 48px;
+            transform: translateY(-50%);
+            font-family: var(--mono);
+            font-size: 9px;
+            letter-spacing: 0.15em;
+            color: rgba(255,255,255,0.12);
+            writing-mode: vertical-rl;
+            text-transform: uppercase;
+        }
+
+        /* SECTION BASE */
+        .section { padding: 120px 48px; }
+        .section-inner { max-width: 1080px; margin: 0 auto; }
+        .section-label {
+            font-family: var(--mono);
+            font-size: 9px;
+            letter-spacing: 0.3em;
+            text-transform: uppercase;
+            color: var(--green);
+            margin-bottom: 48px;
+            display: flex;
+            align-items: center;
+            gap: 14px;
+        }
+        .section-label::after {
+            content: '';
+            width: 28px;
+            height: 1px;
+            background: var(--green);
+        }
+
+        /* PIONEER SECTION */
+        .pioneer-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 80px;
+            align-items: center;
+            margin-top: 16px;
+        }
+        .pioneer-text h2 {
+            font-family: 'Space Grotesk', sans-serif;
+            font-size: clamp(28px, 3.5vw, 52px);
+            font-weight: 700;
+            letter-spacing: -0.02em;
+            line-height: 1.1;
+            margin-bottom: 28px;
+        }
+        .pioneer-text p {
+            font-size: 15px;
+            color: rgba(255,255,255,0.5);
+            line-height: 1.9;
+            margin-bottom: 20px;
+        }
+        .pioneer-img {
+            width: 100%;
+            aspect-ratio: 4/3;
+            border: 1px solid rgba(255,255,255,0.07);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+            font-family: var(--mono);
+            font-size: 9px;
+            letter-spacing: 0.2em;
+            text-transform: uppercase;
+            color: rgba(255,255,255,0.15);
+        }
+        .pioneer-img span:first-child { font-size: 28px; opacity: 0.3; }
+
+        /* DATA STRIP */
+        .data-strip {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 1px;
+            background: rgba(255,255,255,0.06);
+            border: 1px solid rgba(255,255,255,0.06);
+            margin-top: 72px;
+        }
+        .data-item {
+            padding: 40px 36px;
+            background: var(--navy);
+        }
+        .data-label {
+            font-family: var(--mono);
+            font-size: 9px;
+            letter-spacing: 0.22em;
+            text-transform: uppercase;
+            color: var(--green);
+            display: block;
+            margin-bottom: 12px;
+        }
+        .data-value {
+            font-family: 'Space Grotesk', sans-serif;
+            font-size: clamp(22px, 2.8vw, 36px);
+            font-weight: 700;
+            letter-spacing: -0.02em;
+            color: var(--white);
+            display: block;
+            margin-bottom: 8px;
+        }
+        .data-desc {
+            font-size: 13px;
+            color: rgba(255,255,255,0.35);
+            line-height: 1.6;
+        }
+
+        /* PLAQUE SECTION */
+        .plaque-intro {
+            max-width: 680px;
+            margin-top: 16px;
+        }
+        .plaque-intro h2 {
+            font-family: 'Space Grotesk', sans-serif;
+            font-size: clamp(28px, 3.5vw, 52px);
+            font-weight: 700;
+            letter-spacing: -0.02em;
+            line-height: 1.1;
+            margin-bottom: 28px;
+        }
+        .plaque-intro p {
+            font-size: 15px;
+            color: rgba(255,255,255,0.5);
+            line-height: 1.9;
+            margin-bottom: 20px;
+        }
+        .plaque-elements {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 2px;
+            margin-top: 64px;
+        }
+        .plaque-el {
+            border: 1px solid rgba(255,255,255,0.07);
+            padding: 44px 36px;
+        }
+        .plaque-el-num {
+            font-family: var(--mono);
+            font-size: 9px;
+            letter-spacing: 0.22em;
+            color: var(--green);
+            display: block;
+            margin-bottom: 16px;
+        }
+        .plaque-el-title {
+            font-family: 'Space Grotesk', sans-serif;
+            font-size: 18px;
+            font-weight: 700;
+            color: var(--white);
+            margin-bottom: 12px;
+        }
+        .plaque-el-body {
+            font-size: 13px;
+            color: rgba(255,255,255,0.4);
+            line-height: 1.8;
+        }
+
+        /* CONNECTION SECTION */
+        #connection { border-top: 1px solid rgba(255,255,255,0.06); }
+        .connection-inner {
+            max-width: 760px;
+        }
+        .connection-inner h2 {
+            font-family: 'Space Grotesk', sans-serif;
+            font-size: clamp(28px, 4vw, 56px);
+            font-weight: 700;
+            letter-spacing: -0.02em;
+            line-height: 1.1;
+            margin-bottom: 32px;
+        }
+        .connection-inner p {
+            font-size: 16px;
+            color: rgba(255,255,255,0.5);
+            line-height: 1.9;
+            margin-bottom: 20px;
+        }
+        .quote-block {
+            border-left: 2px solid var(--green);
+            padding: 24px 32px;
+            margin: 48px 0;
+        }
+        .quote-text {
+            font-family: 'Space Grotesk', sans-serif;
+            font-size: clamp(18px, 2.2vw, 26px);
+            font-weight: 300;
+            color: rgba(255,255,255,0.7);
+            line-height: 1.5;
+            letter-spacing: -0.01em;
+        }
+
+        /* CTA */
+        #cta {
+            padding: 120px 48px;
+            text-align: center;
+            border-top: 1px solid rgba(255,255,255,0.06);
+        }
+        .cta-label {
+            font-family: var(--mono);
+            font-size: 9px;
+            letter-spacing: 0.28em;
+            text-transform: uppercase;
+            color: var(--green);
+            display: block;
+            margin-bottom: 24px;
+        }
+        .cta-title {
+            font-family: 'Space Grotesk', sans-serif;
+            font-size: clamp(28px, 4vw, 56px);
+            font-weight: 700;
+            letter-spacing: -0.02em;
+            line-height: 1.1;
+            margin-bottom: 48px;
+        }
+        .btn-primary {
+            display: inline-block;
+            background: var(--green);
+            color: var(--navy);
+            font-family: var(--mono);
+            font-size: 10px;
+            letter-spacing: 0.22em;
+            text-transform: uppercase;
+            padding: 18px 40px;
+            text-decoration: none;
+            transition: opacity 0.2s;
+            margin-right: 12px;
+        }
+        .btn-primary:hover { opacity: 0.82; }
+        .btn-ghost {
+            display: inline-block;
+            border: 1px solid rgba(255,255,255,0.2);
+            color: rgba(255,255,255,0.6);
+            font-family: var(--mono);
+            font-size: 10px;
+            letter-spacing: 0.22em;
+            text-transform: uppercase;
+            padding: 18px 40px;
+            text-decoration: none;
+            transition: border-color 0.2s, color 0.2s;
+        }
+        .btn-ghost:hover { border-color: var(--white); color: var(--white); }
+
+        /* FADE IN */
+        .fade-in { opacity: 0; transform: translateY(20px); transition: opacity 0.7s ease, transform 0.7s ease; }
+        .fade-in.visible { opacity: 1; transform: translateY(0); }
+
+        /* RESPONSIVE */
+        @media (max-width: 900px) {
+            header { padding: 18px 24px; }
+            #hero { padding: 0 24px 64px; }
+            .hero-coord { display: none; }
+            .section { padding: 80px 24px; }
+            .pioneer-grid { grid-template-columns: 1fr; gap: 40px; }
+            .data-strip { grid-template-columns: 1fr; }
+            .plaque-elements { grid-template-columns: 1fr; }
+            #cta { padding: 80px 24px; }
+        }
+    </style>
+</head>
+<body>
+
+<header>
+    <a href="pioneer-homepage.html" class="header-logo">PIONEER</a>
+    <a href="pioneer-homepage.html" class="header-back">홈으로</a>
+</header>
+
+
+<!-- HERO -->
+<section id="hero">
+    <div>
+        <span class="hero-eyebrow">Heritage</span>
+        <h1 class="hero-title">Pioneer.<br>The Plaque.</h1>
+        <p class="hero-sub">1972년, 인류는 태양계 너머로 무언가를 보냈습니다. 탐사선 한 대와, 금속판 하나.</p>
+    </div>
+    <span class="hero-coord">Pioneer 10 · Launched 1972.03.03 · Still traveling</span>
+</section>
+
+
+<!-- PIONEER SPACECRAFT -->
+<section class="section">
+    <div class="section-inner">
+        <div class="section-label">Pioneer 10 &amp; 11</div>
+
+        <div class="pioneer-grid">
+            <div class="pioneer-text fade-in">
+                <h2>멈추지 않는<br>첫 번째 탐사선</h2>
+                <p>1972년 3월, 파이어니어 10호가 지구를 떠났습니다. 목적지는 목성. 하지만 탐사선은 목성을 지나서도 멈추지 않았습니다.</p>
+                <p>1983년, 파이어니어 10호는 인류 역사상 최초로 태양계의 경계를 넘었습니다. 지금도 초속 12킬로미터로 달리고 있습니다. 방향을 바꾼 적이 없습니다.</p>
+                <p>파이어니어는 개척자입니다. 누군가 가본 길이 아닌, 처음 내딛는 길을 가는 사람. 우리가 이 이름을 선택한 이유입니다.</p>
+            </div>
+            <div class="pioneer-img fade-in">
+                <!-- ▼ 파이어니어 탐사선 이미지로 교체 -->
+                <span>◻</span>
+                <span>Pioneer 10 탐사선 이미지</span>
+                <span style="opacity:0.5;">NASA 아카이브 또는 아티스트 렌더링</span>
+                <!-- ▲ 이미지로 교체 -->
+            </div>
+        </div>
+
+        <div class="data-strip fade-in">
+            <div class="data-item">
+                <span class="data-label">Launch Date</span>
+                <span class="data-value">1972.03.03</span>
+                <span class="data-desc">파이어니어 10호 발사일. 케네디 우주센터.</span>
+            </div>
+            <div class="data-item">
+                <span class="data-label">Distance</span>
+                <span class="data-value">133 AU+</span>
+                <span class="data-desc">현재 지구로부터의 거리. 지금도 늘어나고 있습니다.</span>
+            </div>
+            <div class="data-item">
+                <span class="data-label">Status</span>
+                <span class="data-value">Still going</span>
+                <span class="data-desc">마지막 신호 수신 2003년. 탐사선은 여전히 달리고 있습니다.</span>
+            </div>
+        </div>
+    </div>
+</section>
+
+
+<!-- THE PLAQUE -->
+<section class="section" style="border-top: 1px solid rgba(255,255,255,0.06);">
+    <div class="section-inner">
+        <div class="section-label">The Pioneer Plaque</div>
+
+        <div class="plaque-intro fade-in">
+            <h2>우주로 보낸<br>인류의 좌표</h2>
+            <p>파이어니어 10·11호에는 금속판이 실렸습니다. 가로 23cm, 세로 15cm의 금도금 알루미늄판. 언젠가 이 탐사선을 발견할 외계 지성체를 위해, 인류가 자신을 소개한 기록입니다.</p>
+            <p>누가 만들었는지. 어디서 왔는지. 어떻게 생겼는지. 이 판 하나에 그 모든 것이 담겼습니다. 인류가 우주에 남긴 가장 작고, 가장 멀리 간 자기소개입니다.</p>
+        </div>
+
+        <div class="plaque-elements fade-in">
+            <div class="plaque-el">
+                <span class="plaque-el-num">01 — Position</span>
+                <div class="plaque-el-title">우리가 어디 있는지</div>
+                <p class="plaque-el-body">14개의 펄서를 기준으로 태양계의 위치를 나타낸 성도. 우주 어디서도 읽을 수 있는 좌표계입니다.</p>
+            </div>
+            <div class="plaque-el">
+                <span class="plaque-el-num">02 — Identity</span>
+                <div class="plaque-el-title">우리가 어떻게 생겼는지</div>
+                <p class="plaque-el-body">남성과 여성의 실루엣. 탐사선 크기 대비 인류의 체형. 손을 들어 인사하는 자세.</p>
+            </div>
+            <div class="plaque-el">
+                <span class="plaque-el-num">03 — Origin</span>
+                <div class="plaque-el-title">우리가 어디서 왔는지</div>
+                <p class="plaque-el-body">태양계 행성 배치도와 탐사선의 궤적. 지구에서 출발했음을 나타내는 경로.</p>
+            </div>
+        </div>
+    </div>
+</section>
+
+
+<!-- CONNECTION -->
+<section id="connection" class="section">
+    <div class="section-inner">
+        <div class="section-label">PIONEER × The Plaque</div>
+
+        <div class="connection-inner fade-in">
+            <h2>우리가<br>이 이름을 쓰는 이유</h2>
+            <p>파이어니어 플라크는 "우리가 누구인지"를 담은 기록입니다. 목적지를 향해 달려가는 탐사선에, 자신의 좌표를 새긴 판 하나.</p>
+            <p>우리가 만드는 The Plaque도 같은 질문에서 시작합니다. 당신은 누구인지. 어디로 향하는지. 어떤 별을 원하는지.</p>
+
+            <div class="quote-block">
+                <p class="quote-text">"폰케이스를 만드는 게 아닙니다. 당신이 어디로 가는지를 기록하는 겁니다. 매일 손에 들고 다니는 좌표로."</p>
+            </div>
+
+            <p>1972년의 금속판이 우주에서 인류를 대신했다면, PIONEER의 The Plaque는 이 시대를 달리는 당신을 대신합니다. 세상에 하나뿐인, 당신의 별의 좌표로.</p>
+        </div>
+    </div>
+</section>
+
+
+<!-- CTA -->
+<section id="cta">
+    <span class="cta-label">당신의 별</span>
+    <h2 class="cta-title">나의 Plaque를<br>만들어보겠습니까.</h2>
+    <a href="pioneer-homepage.html#shop" class="btn-primary">Plaque 보러 가기</a>
+    <a href="pioneer-homepage.html" class="btn-ghost">홈으로</a>
+</section>
+
+
+<script>
+    const observer = new IntersectionObserver((entries) => {
+        entries.forEach(e => {
+            if (e.isIntersecting) e.target.classList.add('visible');
+        });
+    }, { threshold: 0.08 });
+    document.querySelectorAll('.fade-in').forEach(el => observer.observe(el));
+</script>
+
+</body>
+</html>
